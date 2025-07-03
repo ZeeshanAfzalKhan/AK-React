@@ -27,6 +27,11 @@
 }
 
 .restaurant-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 300px;
   border: 1px solid #e1dada;
   border-radius: 8px;
   padding: 20px;

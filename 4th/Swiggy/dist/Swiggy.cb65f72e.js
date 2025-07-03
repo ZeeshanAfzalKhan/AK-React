@@ -748,8 +748,8 @@ const RestaurantCard = ()=>{
         className: "restaurant-card",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: "https://via.placeholder.com/150",
-                alt: "Restaurant"
+                src: "/public/Logo.png",
+                alt: "Restaurant-Image"
             }, void 0, false, {
                 fileName: "App.js",
                 lineNumber: 23,

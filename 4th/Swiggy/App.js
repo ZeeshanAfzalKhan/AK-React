@@ -20,7 +20,7 @@ const Header = () => {
 const RestaurantCard = () => {
   return (
     <div className="restaurant-card">
-      <img src="https://via.placeholder.com/150" alt="Restaurant" />
+      <img src="/public/Logo.png" alt="Restaurant-Image" />
       <h3>Half Fried</h3>
       <p>Some description about the restaurant.</p>
       <p>Delivery Time: 30 mins</p>
