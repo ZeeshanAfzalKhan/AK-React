@@ -1,0 +1,43 @@
+.header {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e1dada;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  display: flex;
+}
+
+#logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#navbar ul {
+  gap: 20px;
+  list-style: none;
+  display: flex;
+}
+
+#navbar li {
+  cursor: pointer;
+}
+
+#navbar li:hover {
+  text-decoration: underline;
+}
+
+.restaurant-card {
+  background-color: #fff;
+  border: 1px solid #e1dada;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px #0000001a;
+}
+
+.search {
+  justify-content: center;
+  margin: 20px;
+  display: flex;
+}
+/*# sourceMappingURL=Swiggy.9e4c6fd2.css.map */
