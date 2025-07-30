@@ -1,0 +1,25 @@
+{
+  "name": "js-react",
+  "version": "1.0.0",
+  "description": "This is a custom made react app.",
+  "keywords": [
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/ZeeshanAfzalKhan/AK-React.git)"
+  },
+  "license": "ISC",
+  "author": "Zeeshan Afzal Khan",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
