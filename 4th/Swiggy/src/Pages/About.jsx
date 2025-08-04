@@ -1,17 +1,25 @@
-import UserCardClass from "../Components/UserCardClass"
+import UserCardClass from "../Components/UserCardClass";
+import React from "react";
 
-const About = () => {
-  return (
-    <div>
-      <h1>About Us</h1>
-      <UserCardClass 
-        name="Zeeshan Afzal Khan Class"
-        phone="1234567890"
-        email="zeeshan@1234"
-        address="1234 Street Name, City, Country"
-      />
-    </div>
-  );
+class About extends React.Component {
+  constructor(props) {
+    super(props);
+    // console.log("Parent Constructor called");
+  }
+
+  componentDidMount() {
+    // console.log("Parent Component Mounted");
+  }
+
+  render() {
+    // console.log("Parent Render called");
+    return (
+      <div>
+        <h1>About Us</h1>
+        <UserCardClass />
+      </div>
+    );
+  }
 }
 
-export default About
+export default About;

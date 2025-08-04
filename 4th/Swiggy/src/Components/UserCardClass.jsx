@@ -9,30 +9,54 @@ class UserCardClass extends React.Component {
 
   constructor(props) {
     super(props);
-
+    console.log("UserCardClass Constructor called");
     this.state = {
-      count: 0,
-    };
+      user: {
+        name: "Dummy Name",
+        location: "Dummy Location",
+        bio: "Dummy Bio",
+        blog: "Dummy Blog",
+        email: "Dummy Email",
+        avatar_url: "https://avatars.githubusercontent.com/u/12345678?v=4" // Example avatar URL
+      }
+    }
   }
+
+  async componentDidMount() {
+    console.log("UserCardClass Component Mounted");
+
+    const data = await fetch("https://api.github.com/users/ZeeshanAfzalKhan");
+    const json = await data.json();
+    console.log(json);
+
+    this.setState({
+      user: {
+        name: json?.name || "Not provided", // Fallback if name is not available
+        location: json?.location || "Not provided", // Fallback if location is not available
+        bio: json?.bio || "No bio available", // Fallback if bio is not available
+        blog: json?.blog  || "Not provided", // Fallback if blog is not available
+        email: json?.email || "Not provided", // Fallback if email is not available
+        avatar_url: json?.avatarurl || "https://avatars.githubusercontent.com/u/12345678?v=4" // Fallback avatar URL
+      }
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("UserCardClass Component Updated");
+    // You can add logic here to handle updates if needed
+  }
+
   render() {
-    const { name, phone, email, address } = this.props;
+    console.log("UserCardClass Render called");
+    const { name, location, bio, blog, email } = this.state.user || {};
     return (
       <div>
-        <h1>Count: {this.state.count}</h1>
-        <button onClick={() => {
-          this.setState({
-            count: this.state.count + 1
-          })
-        }}>Count Increase</button>
-        <button onClick={() => {
-          this.setState({
-            count: this.state.count - 1
-          })
-        }}>Count Decrease</button>
+        <img src={this.state.user.avatar_url} alt="User Avatar" />
         <h1>Name: {name}</h1>
-        <h2>Phone: {phone}</h2>
+        <h2>Bio: {bio}</h2>
+        <h2>Location: {location}</h2>
+        <h2>Blog: {blog}</h2>
         <h2>Email: {email}</h2>
-        <h2>Address: {address}</h2>
       </div>
     );
   }
