@@ -24,6 +24,11 @@ class UserCardClass extends React.Component {
             count: this.state.count + 1
           })
         }}>Count Increase</button>
+        <button onClick={() => {
+          this.setState({
+            count: this.state.count - 1
+          })
+        }}>Count Decrease</button>
         <h1>Name: {name}</h1>
         <h2>Phone: {phone}</h2>
         <h2>Email: {email}</h2>
