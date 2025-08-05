@@ -1,44 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import useRestaurantDetails  from "../../utils/useRestaurantDetails";
 
 const RestaurantPage = () => {
   const { resId } = useParams();
-  const [restaurantDetails, setRestaurantDetails] = useState(null);
-  const [restaurantMenu, setRestaurantMenu] = useState(null);
 
-  useEffect(() => {
-    fetchRestaurantDetails();
-  }, []);
-
-  const fetchRestaurantDetails = async () => {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.465094&lng=77.5035701&restaurantId=${resId}`
-    );
-    const json = await data.json();
-    setRestaurantDetails(json.data?.cards[2]?.card?.card?.info);
-
-    const menuData = [
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-        ?.card?.card?.itemCards || []),
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
-        ?.card?.card?.categories?.itemCards || []),
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]
-        ?.card?.card?.itemCards || []),
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]
-        ?.card?.card?.itemCards || []),
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[5]
-        ?.card?.card?.itemCards || []),
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[6]
-        ?.card?.card?.itemCards || []),
-      ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[7]
-        ?.card?.card?.itemCards || [])
-    ];
-
-
-    setRestaurantMenu(
-      menuData ? menuData.filter(item => item.card?.info) : []
-    );
-  };
+  const {restaurantDetails, restaurantMenu} = useRestaurantDetails(resId);
 
   const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } = restaurantDetails ?? {};
 
@@ -50,7 +17,7 @@ const RestaurantPage = () => {
         className="res-logo"
         src={
           "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          restaurantDetails?.cloudinaryImageId
+          cloudinaryImageId
         }
         alt="Restaurant-Image"
       />
