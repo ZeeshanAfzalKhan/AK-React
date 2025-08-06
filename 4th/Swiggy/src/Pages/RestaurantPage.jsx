@@ -1,16 +1,20 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useRestaurantDetails  from "../../utils/useRestaurantDetails";
+import useRestaurantDetails from "../../utils/useRestaurantDetails";
 
 const RestaurantPage = () => {
   const { resId } = useParams();
 
-  const {restaurantDetails, restaurantMenu} = useRestaurantDetails(resId);
+  const { restaurantDetails, restaurantMenu, loading, error } =
+    useRestaurantDetails(resId);
 
-  const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } = restaurantDetails ?? {};
+  const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } =
+    restaurantDetails ?? {};
 
-  return restaurantDetails === null ? (
+  return loading ? (
     <h1>Loading...</h1>
+  ) : error ? (
+    <h1>Error: {error}</h1>
   ) : (
     <div>
       <img
