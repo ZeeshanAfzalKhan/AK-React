@@ -9,7 +9,6 @@ class UserCardClass extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("UserCardClass Constructor called");
     this.state = {
       user: {
         name: "Dummy Name",
@@ -23,11 +22,9 @@ class UserCardClass extends React.Component {
   }
 
   async componentDidMount() {
-    console.log("UserCardClass Component Mounted");
 
     const data = await fetch("https://api.github.com/users/ZeeshanAfzalKhan");
     const json = await data.json();
-    console.log(json);
 
     this.setState({
       user: {
@@ -42,12 +39,10 @@ class UserCardClass extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("UserCardClass Component Updated");
     // You can add logic here to handle updates if needed
   }
 
   render() {
-    console.log("UserCardClass Render called");
     const { name, location, bio, blog, email } = this.state.user || {};
     return (
       <div>

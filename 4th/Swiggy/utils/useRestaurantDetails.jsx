@@ -9,7 +9,7 @@ const useRestaurantDetails = (restaurantId) => {
 
   useEffect(() => {
     fetchRestaurantData();
-  })
+  }, [restaurantId]);
 
   const fetchRestaurantData = async () => {
     try {
@@ -24,6 +24,8 @@ const useRestaurantDetails = (restaurantId) => {
     const json = await data.json();
 
     setRestaurantDetails(json.data?.cards[2]?.card?.card?.info);
+
+    console.log(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
     const menuData = [
       ...(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
