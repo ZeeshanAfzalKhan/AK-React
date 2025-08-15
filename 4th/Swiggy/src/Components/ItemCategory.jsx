@@ -1,7 +1,7 @@
 import MenuItem from "./MenuItem";
 
 const ItemCategory = ({ category }) => {
-  console.log(category)
+  // console.log(category)
   if(category?.itemCards) {
 
     return (
@@ -15,8 +15,7 @@ const ItemCategory = ({ category }) => {
               key={item?.card?.info?.id}
               className="flex flex-col items-center mb-8"
             >
-              <MenuItem />
-              
+              <MenuItem item={item?.card?.info}/>
             </div>
           );
         })}
@@ -28,14 +27,12 @@ const ItemCategory = ({ category }) => {
 
   if(category?.categories) {
     return (
-      <div>
+      <div className="w-1/2 mx-auto">
         <h2>
           {category?.title} {category?.categories.length}
         </h2>
         {category?.categories.map((item) => {
-          return (
-            <ItemCategory key={item?.categoryId} category={item}/>
-          )
+          return <ItemCategory key={item?.categoryId} category={item} />;
         })}
       </div>
     );
