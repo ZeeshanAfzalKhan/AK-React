@@ -7,8 +7,6 @@ const Body = () => {
 
   const RestaurantCardWithIsOpenLabel = withPromotedLabel(RestaurantCard);
 
-  console.log("Body component rendered", restaurants);
-
   if (useOnlineStatus() === false)
     return (
       <h1>Looks like you are offline... Pls check your internet connection.</h1>

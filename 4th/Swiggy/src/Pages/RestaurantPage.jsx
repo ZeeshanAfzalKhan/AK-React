@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import ItemCategory from "../Components/ItemCategory";
 import useRestaurantDetails from "../../utils/useRestaurantDetails";
 
 const RestaurantPage = () => {
@@ -7,6 +7,8 @@ const RestaurantPage = () => {
 
   const { restaurantDetails, restaurantMenu, loading, error } =
     useRestaurantDetails(resId);
+
+  // console.log("RestaurantPage component rendered", restaurantMenu);
 
   const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } =
     restaurantDetails ?? {};
@@ -32,27 +34,11 @@ const RestaurantPage = () => {
         <h4 className="text-2xl">Rating: {avgRating}</h4>
       </div>
 
-      <div className="w-full max-w-4xl flex flex-col items-center"> 
+      <div className="w-full max-w-4xl flex flex-col items-center">
         <h2 className="font-semibold text-3xl mb-8">Menu</h2>
-        <ul className="flex flex-col items-center justify-center">
-          {restaurantMenu?.map((item) => (
-            <li key={item.card.info.id} className="flex justify-between mb-4 gap-12 items-center w-full max-w-3xl p-4 border-b">
-              <img
-                className="h-40 w-60 object-cover rounded-lg"
-                src={
-                  "https://media-assets.swiggy.com/swiggy/image/upload/" +
-                  item.card.info.imageId
-                }
-                alt={item.card.info.name}
-              />
-              <div className="flex flex-col justify-center text-justify">
-                <h3 className="text-2xl font-medium mb-2">{item.card.info.name}</h3>
-                <p className="text-md">{item.card.info.description}</p>
-                <p className="text-2xl mt-2">Price: ₹{item.card.info.price / 100}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {restaurantMenu?.map((category) => {
+          return <ItemCategory key={category?.card?.card?.categoryId} category={category?.card?.card}/>;
+        })}
       </div>
     </div>
   );
