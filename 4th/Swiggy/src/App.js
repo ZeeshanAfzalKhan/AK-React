@@ -10,6 +10,7 @@ import Contact from "./Pages/Contact";
 import Error from "./Pages/Error";
 import Cart from "./Pages/Cart";
 import RestaurantPage from "./Pages/RestaurantPage";
+window.React = React; // 👈 expose React globally for DevTools
 
 const Grocery = lazy(() => import("./Pages/Grocery.jsx"));
 
@@ -63,5 +64,7 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <RouterProvider router={appRouter} future={{ v7_startTransition: true }} />
+  <React.StrictMode>
+    <RouterProvider router={appRouter} future={{ v7_startTransition: true }} />
+  </React.StrictMode>
 );
