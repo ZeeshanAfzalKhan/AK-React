@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -10,17 +10,33 @@ import Contact from "./Pages/Contact";
 import Error from "./Pages/Error";
 import Cart from "./Pages/Cart";
 import RestaurantPage from "./Pages/RestaurantPage";
+import { useEffect } from 'react';
+import UserContext from "./Context/UserContext.jsx";
 window.React = React; // 👈 expose React globally for DevTools
 
 const Grocery = lazy(() => import("./Pages/Grocery.jsx"));
 
+
+
 const App = () => {
+  const [userName, setUserName] = useState("")
+
+  useEffect(() => {
+    const data = {
+      name: "Zeeshan Afzal Khan"
+    }
+    setUserName(data.name);
+  }, []);
+
+
   return (
-    <div id="app">
+   <UserContext.Provider value={{ loggedUser: userName}}>
+     <div id="app">
       <Header />
       <Outlet />
       <Footer />
     </div>
+   </UserContext.Provider>
   );
 };
 

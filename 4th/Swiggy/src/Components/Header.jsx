@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import UserContext from "../Context/UserContext";
+
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+
+  const { loggedUser } = useContext(UserContext);
 
   const linkClass = (isActive) =>
     `text-base px-4 py-2 transition-colors duration-300 ${
