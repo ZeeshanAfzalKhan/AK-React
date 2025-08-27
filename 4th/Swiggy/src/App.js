@@ -13,6 +13,8 @@ import RestaurantPage from "./Pages/RestaurantPage";
 import { useEffect } from 'react';
 import UserContext from "./Context/UserContext.jsx";
 window.React = React; // 👈 expose React globally for DevTools
+import { Provider } from "react-redux";
+import appStore from "./Redux/appStore.js";
 
 const Grocery = lazy(() => import("./Pages/Grocery.jsx"));
 
@@ -30,13 +32,13 @@ const App = () => {
 
 
   return (
-   <UserContext.Provider value={{ loggedUser: userName}}>
-     <div id="app">
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
-   </UserContext.Provider>
+   <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 

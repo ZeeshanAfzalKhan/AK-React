@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import UserContext from "../Context/UserContext";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
   const { loggedUser } = useContext(UserContext);
+
+  const cartItems = useSelector((state) => state.cart.items);
 
   const linkClass = (isActive) =>
     `text-base px-4 py-2 transition-colors duration-300 ${
@@ -47,7 +50,7 @@ const Header = () => {
               to="/cart"
               className={({ isActive }) => linkClass(isActive)}
             >
-              Cart
+              Cart - {cartItems.length} items
             </NavLink>
           </li>
           <li>
